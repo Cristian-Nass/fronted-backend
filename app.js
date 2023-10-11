@@ -3,6 +3,7 @@ const app = express();
 const mongoose = require("mongoose");
 const postsRoute = require("./routes/posts");
 const bodyParser = require("body-parser");
+require("dotenv/config");
 
 //Middleware app.use
 app.use(bodyParser.json());
@@ -15,7 +16,7 @@ app.get("/", (req, res) => {
 app.use("/post", postsRoute);
 
 mongoose.connect(
-  "mongodb+srv://cristian_nass:Ppl4kDIR7TshY1zi@cluster.rtl3m8s.mongodb.net/practice?retryWrites=true&w=majority",
+  process.env.DB_CONNECTION,
   { useNewUrlParser: true, useUnifiedTopology: true },
   () => console.log("connect to db")
 );
